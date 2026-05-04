@@ -1,59 +1,25 @@
-# StudentApp
+## 1. SPA vs. MPA 📄
+Before getting into Angular, I mostly interacted with traditional websites.
+* **MPA (Multi-Page Application):** Every time I click a link to go to a new page, the browser asks the server for a new page, and the entire screen goes blank for a split second to reload. It fetches an entirely new HTML document every time.
+* **SPA (Single-Page Application):** This is what Angular builds, and it's awesome! The browser only loads a single HTML page initially. As I click around, Angular steps in and dynamically rewrites the current page with new data instead of asking the server for a whole new HTML page. It feels much faster and smoother, almost like a desktop or phone app.
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.9.
+## 2. MVC vs. MVVM in Angular 🏗️
+I've learned about architectural patterns, and here is how they fit into Angular:
+* **MVC (Model-View-Controller):** You have a Model (the data), a View (the user interface), and a Controller (the logic that handles input and updates the Model/View).
+* **MVVM (Model-View-ViewModel):** Angular is actually closer to MVVM! 
+  * **Model:** My data structures and backend services.
+  * **View:** My HTML templates (what the user sees).
+  * **ViewModel:** My `.ts` component class. It acts as the glue that holds the state and logic specifically for that View. Because of Angular's data binding, when the ViewModel changes, the View updates automatically, and vice versa!
 
-## Development server
+## 3. The Component Files 🧩
+When I create a new component in Angular, it gives me a folder with four specific files. Here is what I use each one for:
+* **`.ts` (TypeScript):** The "brain" of the component. This is the ViewModel. Here is where I declare my variables, arrays, and write functions to handle button clicks.
+* **`.html` (Template):** The "skeleton" or "face". This holds the HTML markup and dictates how the component is structured visually on the screen.
+* **`.css` (Styles):** The "makeup". This is for my CSS styling. The coolest part is that styles written here are scoped *only* to this component, meaning I don't have to worry about accidentally messing up styles on another page!
+* **`.spec.ts` (Testing):** The "exam paper". This file is generated for writing automated unit tests to ensure my component's logic is working exactly as expected.
 
-To start a local development server, run:
+## 4. Interpolation `{{ }}` ✨
+This is one of the first and most fun features I learned! 
+Interpolation is a form of one-way data binding. It allows me to take a variable or piece of data from my TypeScript file (`.ts`) and easily display it in my HTML file (`.html`). 
 
-```bash
-ng serve
-```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+All I have to do is wrap the variable in double curly braces, like this: `{{ studentName }}`. Angular evaluates whatever is inside the braces and injects it right into the DOM as text.
