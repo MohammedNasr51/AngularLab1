@@ -1,27 +1,11 @@
-import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { ICategory, ICourse } from '../models/icourses';
-import { NgClass } from '@angular/common';
-import { DisableAfterClick } from '../disable-after-click';
+import { Injectable } from '@angular/core';
+import { ICourse } from '../models/icourses';
 
-
-@Component({
-  selector: 'app-courses',
-  imports: [FormsModule, NgClass,DisableAfterClick],
-  templateUrl: './courses.html',
-  styleUrl: './courses.css',
+@Injectable({
+  providedIn: 'root',
 })
-export class Courses {
-  selectedCatId = 0;
-  categories: ICategory[] = [
-    { id: 0, name: 'All' },
-    { id: 1, name: 'Web Development' },
-    { id: 2, name: 'Business' },
-    { id: 3, name: 'Marketing' },
-    { id: 4, name: 'Design' },
-  ];
-
-  courses: ICourse[] = [
+export class CourseService {
+  private courses: ICourse[] = [
     {
       id: 1,
       title: 'React Js',
@@ -125,13 +109,17 @@ export class Courses {
       catId: 1,
     },
   ];
-
-  buy(id: number) {
-    this.courses = this.courses.map((course) => {
-      if (course.id === id && course.seats > 0) {
-        return { ...course, seats: course.seats - 1 };
-      }
-      return course;
-    });
+  getAllCourses(): ICourse[] {
+    return this.courses;
+  }
+  gerCoursesByCatId(id: number): ICourse[] {
+    if (id == 0) {
+      return this.courses;
+    }
+    return this.courses.filter((course) => course.catId == id);
+  }
+  gerCourseById(id: number): ICourse | null {
+    const c = this.courses.find((course) => course.id == id);
+    return c ?? null;
   }
 }
