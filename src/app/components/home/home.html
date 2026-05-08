@@ -1,0 +1,110 @@
+<!-- Hero Section -->
+<section class="min-h-screen bg-gradient-to-br from-cyan-50 via-white to-amber-50">
+
+  <!-- Student Welcome Banner -->
+  <div class="bg-white shadow-sm border-b border-cyan-100">
+    <div class="w-[90%] max-w-6xl mx-auto py-4 flex items-center justify-between flex-wrap gap-3">
+      <div class="flex items-center gap-3">
+        <span class="text-sm text-slate-600 font-medium">Welcome back 👋</span>
+        <app-student></app-student>
+      </div>
+      <a routerLink="/courses" class="btn bg-cyan-700 hover:bg-cyan-800 text-white border-none btn-sm gap-2">
+        Browse Courses
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+        </svg>
+      </a>
+    </div>
+  </div>
+
+  <!-- Hero Content -->
+  <div class="w-[90%] max-w-6xl mx-auto pt-20 pb-16">
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+
+      <!-- Left: Text -->
+      <div class="space-y-6">
+        <div class="badge bg-amber-100 text-amber-800 border-amber-200 badge-lg font-semibold">🎓 Online Learning Platform</div>
+        <h1 class="text-5xl font-extrabold leading-tight text-slate-900">
+          Unlock Your <span class="text-cyan-700">Potential</span> with Expert-Led Courses
+        </h1>
+        <p class="text-lg text-slate-600 leading-relaxed">
+          Explore courses across Web Development, Business, Marketing, and Design.
+          Learn at your own pace from industry professionals and advance your career today.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a routerLink="/courses" class="btn bg-cyan-700 hover:bg-cyan-800 text-white border-none btn-lg gap-2">
+            Explore Courses
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
+          </a>
+          <a routerLink="/about-us" class="btn btn-outline border-cyan-700 text-cyan-700 hover:bg-cyan-700 hover:border-cyan-700 btn-lg">Learn More</a>
+        </div>
+        <!-- Stats Row -->
+        <div class="flex flex-wrap gap-6 pt-4">
+          <div class="text-center">
+            <div class="text-3xl font-bold text-cyan-700">10+</div>
+            <div class="text-sm text-slate-500">Courses</div>
+          </div>
+          <div class="divider divider-horizontal"></div>
+          <div class="text-center">
+            <div class="text-3xl font-bold text-cyan-700">4</div>
+            <div class="text-sm text-slate-500">Categories</div>
+          </div>
+          <div class="divider divider-horizontal"></div>
+          <div class="text-center">
+            <div class="text-3xl font-bold text-cyan-700">8+</div>
+            <div class="text-sm text-slate-500">Instructors</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Feature Cards -->
+      <div class="grid grid-cols-2 gap-4">
+        <div class="card bg-white shadow-md hover:shadow-xl transition-shadow duration-300 border border-cyan-100">
+          <div class="card-body items-center text-center p-5">
+            <div class="text-4xl mb-2">💻</div>
+            <h3 class="font-bold text-base">Web Development</h3>
+            <p class="text-xs text-slate-500">React, Angular, Next.js & more</p>
+          </div>
+        </div>
+        <div class="card bg-white shadow-md hover:shadow-xl transition-shadow duration-300 border border-amber-100">
+          <div class="card-body items-center text-center p-5">
+            <div class="text-4xl mb-2">📊</div>
+            <h3 class="font-bold text-base">Business</h3>
+            <p class="text-xs text-slate-500">Accounting, English & finance</p>
+          </div>
+        </div>
+        <div class="card bg-white shadow-md hover:shadow-xl transition-shadow duration-300 border border-rose-100">
+          <div class="card-body items-center text-center p-5">
+            <div class="text-4xl mb-2">📣</div>
+            <h3 class="font-bold text-base">Marketing</h3>
+            <p class="text-xs text-slate-500">Digital & traditional marketing</p>
+          </div>
+        </div>
+        <div class="card bg-rose-600 shadow-md hover:shadow-xl transition-shadow duration-300 text-white">
+          <div class="card-body items-center text-center p-5">
+            <div class="text-4xl mb-2">🎨</div>
+            <h3 class="font-bold text-base">Design</h3>
+            <p class="text-xs text-white/75">Graphic design & SEO</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- CTA Section -->
+  <div class="bg-cyan-800 text-white">
+    <div class="w-[90%] max-w-6xl mx-auto py-14 text-center space-y-4">
+      <h2 class="text-3xl font-bold">Ready to Start Learning?</h2>
+      <p class="text-white/80 text-lg max-w-xl mx-auto">
+        Join thousands of students already learning with us. Pick your course and start today.
+      </p>
+      <a routerLink="/courses" class="btn btn-lg bg-white text-cyan-800 hover:bg-cyan-50 border-none font-bold mt-2">
+        View All Courses →
+      </a>
+    </div>
+  </div>
+
+</section>

@@ -1,0 +1,92 @@
+<section class="min-h-screen bg-white">
+
+  <!-- Hero -->
+  <div class="bg-gradient-to-br from-indigo-700 to-rose-600 text-white py-20">
+    <div class="w-[90%] max-w-5xl mx-auto text-center space-y-4">
+      <div class="badge bg-white/20 text-white border-none badge-lg">About EduZone</div>
+      <h1 class="text-5xl font-extrabold">We Believe in Learning <br/> Without Limits</h1>
+      <p class="text-white/80 text-lg max-w-2xl mx-auto">
+        EduZone is an online platform dedicated to helping students grow professionally through
+        expert-led, affordable, and accessible courses.
+      </p>
+    </div>
+  </div>
+
+  <!-- Mission & Vision -->
+  <div class="w-[90%] max-w-5xl mx-auto py-16 grid md:grid-cols-2 gap-10">
+    <div class="space-y-4">
+      <div class="text-4xl">🎯</div>
+      <h2 class="text-2xl font-bold text-slate-900">Our Mission</h2>
+      <p class="text-slate-600 leading-relaxed">
+        To make quality education accessible to everyone — regardless of background or location.
+        We partner with top instructors to deliver courses that are practical, engaging, and career-focused.
+      </p>
+    </div>
+    <div class="space-y-4">
+      <div class="text-4xl">🔭</div>
+      <h2 class="text-2xl font-bold text-slate-900">Our Vision</h2>
+      <p class="text-slate-600 leading-relaxed">
+        To become the leading online learning platform in the region, empowering thousands of
+        students to reach their full potential and transform their careers.
+      </p>
+    </div>
+  </div>
+
+  <div class="divider w-[90%] max-w-5xl mx-auto"></div>
+
+  <!-- Team -->
+  <div class="w-[90%] max-w-5xl mx-auto py-12">
+    <h2 class="text-3xl font-bold text-center text-slate-900 mb-10">Meet Our Instructors</h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+      @for (member of team; track $index) {
+        <div class="card bg-indigo-50 shadow hover:shadow-md transition-shadow text-center">
+          <div class="card-body items-center py-6 gap-2">
+            <div class="avatar placeholder">
+              <div class="bg-indigo-700 text-white rounded-full w-14 text-xl font-bold">
+                <span>{{ member.initials }}</span>
+              </div>
+            </div>
+            <h4 class="font-bold text-sm">{{ member.name }}</h4>
+            <p class="text-xs text-slate-500">{{ member.role }}</p>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+
+  <!-- Stats -->
+  <div class="bg-rose-50 py-12 mt-4">
+    <div class="w-[90%] max-w-5xl mx-auto">
+      <div class="stats stats-vertical md:stats-horizontal shadow w-full bg-white">
+        <div class="stat text-center">
+          <div class="stat-figure text-indigo-700 text-3xl">📚</div>
+          <div class="stat-title">Total Courses</div>
+          <div class="stat-value text-indigo-700">10+</div>
+        </div>
+        <div class="stat text-center">
+          <div class="stat-figure text-rose-600 text-3xl">👨‍🏫</div>
+          <div class="stat-title">Instructors</div>
+          <div class="stat-value text-rose-600">8</div>
+        </div>
+        <div class="stat text-center">
+          <div class="stat-figure text-accent text-3xl">🏷️</div>
+          <div class="stat-title">Categories</div>
+          <div class="stat-value text-accent">4</div>
+        </div>
+        <div class="stat text-center">
+          <div class="stat-figure text-success text-3xl">🎓</div>
+          <div class="stat-title">Happy Students</div>
+          <div class="stat-value text-success">500+</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="w-[90%] max-w-5xl mx-auto py-16 text-center space-y-4">
+    <h2 class="text-2xl font-bold text-slate-900">Start Your Learning Journey Today</h2>
+    <p class="text-slate-500">Browse our catalog and find the course that fits your goals.</p>
+    <a routerLink="/courses" class="btn bg-indigo-700 hover:bg-indigo-800 text-white border-none btn-lg">Browse Courses →</a>
+  </div>
+
+</section>

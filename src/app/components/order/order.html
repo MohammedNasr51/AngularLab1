@@ -1,0 +1,38 @@
+<section class="w-[90%] max-w-6xl mx-auto py-10">
+
+  <!-- Page Header -->
+  <div class="mb-8">
+    <h1 class="text-3xl font-bold text-base-content">Browse Courses</h1>
+    <p class="text-base-content/60 mt-1">Discover and register for courses across all categories</p>
+  </div>
+
+  <!-- Toolbar: Filter + Total Price -->
+  <div class="flex flex-wrap items-center justify-between gap-4 mb-8">
+    <div class="flex items-center gap-3">
+      <span class="text-sm font-semibold text-base-content/70">Filter by category:</span>
+      <select [(ngModel)]="selectedCatId" class="select select-bordered select-sm w-48">
+        @for (cat of categories; track $index; let f = $first) {
+          <option [selected]="f" [value]="cat.id">{{ cat.name }}</option>
+        } @empty {
+          <option>No categories</option>
+        }
+      </select>
+    </div>
+
+    @if (totalPrice > 0) {
+      <div class="stats shadow bg-primary text-primary-content">
+        <div class="stat py-2 px-4">
+          <div class="stat-title text-primary-content/70 text-xs font-bold">Total Order Price</div>
+          <div class="stat-value text-xl">{{ totalPrice | currency: 'USD' }}</div>
+        </div>
+      </div>
+    }
+  </div>
+
+  <!-- Courses Grid -->
+  <app-courses
+    [selectedCatId]="selectedCatId"
+    (onOrderPriceChange)="updateTotalPrice($event)"
+  ></app-courses>
+
+</section>

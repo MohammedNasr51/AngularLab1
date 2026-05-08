@@ -1,0 +1,11 @@
+<div class="flex items-center gap-2">
+  <div class="avatar">
+    <div class="w-9 rounded-full ring ring-primary ring-offset-base-100 ring-offset-1">
+      <img [src]="student.photoUrl" alt="Student avatar" />
+    </div>
+  </div>
+  <div class="hidden sm:block">
+    <p class="font-semibold text-sm leading-tight">{{ student.name }}</p>
+    <p class="text-xs text-base-content/50">{{ student.age }} years old</p>
+  </div>
+</div>

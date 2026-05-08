@@ -1,0 +1,110 @@
+<section class="min-h-screen bg-sky-50">
+
+  <!-- Header -->
+  <div class="bg-gradient-to-br from-sky-700 to-emerald-600 text-white py-16">
+    <div class="w-[90%] max-w-5xl mx-auto text-center space-y-3">
+      <div class="badge bg-white/20 text-white border-none badge-lg">Get In Touch</div>
+      <h1 class="text-4xl font-extrabold">We'd Love to Hear From You</h1>
+      <p class="text-white/80 text-lg max-w-xl mx-auto">
+        Have questions about a course? Want to partner with us? Reach out and we'll get back to you soon.
+      </p>
+    </div>
+  </div>
+
+  <div class="w-[90%] max-w-5xl mx-auto py-14 grid md:grid-cols-2 gap-12">
+
+    <!-- Contact Info -->
+    <div class="space-y-8">
+      <div>
+        <h2 class="text-2xl font-bold text-slate-900 mb-4">Contact Information</h2>
+        <p class="text-slate-600">We're here to help. Fill out the form or reach us through any of the channels below.</p>
+      </div>
+
+      <div class="space-y-5">
+        <div class="flex items-start gap-4">
+          <div class="btn bg-sky-700 text-white border-none btn-circle btn-sm flex-shrink-0 text-base pointer-events-none">📍</div>
+          <div>
+            <p class="font-semibold text-slate-900">Address</p>
+            <p class="text-sm text-slate-500">123 Learning Street, Cairo, Egypt</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-4">
+          <div class="btn bg-sky-700 text-white border-none btn-circle btn-sm flex-shrink-0 text-base pointer-events-none">📧</div>
+          <div>
+            <p class="font-semibold text-slate-900">Email</p>
+            <p class="text-sm text-slate-500">support&#64;eduzone.com</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-4">
+          <div class="btn bg-sky-700 text-white border-none btn-circle btn-sm flex-shrink-0 text-base pointer-events-none">📞</div>
+          <div>
+            <p class="font-semibold text-slate-900">Phone</p>
+            <p class="text-sm text-slate-500">+20 100 000 0000</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-4">
+          <div class="btn bg-sky-700 text-white border-none btn-circle btn-sm flex-shrink-0 text-base pointer-events-none">🕐</div>
+          <div>
+            <p class="font-semibold text-slate-900">Working Hours</p>
+            <p class="text-sm text-slate-500">Sun – Thu: 9:00 AM – 5:00 PM</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contact Form -->
+    <div class="card bg-white shadow-xl border border-sky-100">
+      <div class="card-body">
+
+        @if (submitted) {
+          <div class="alert alert-success mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+            <span>Message sent! We'll get back to you soon.</span>
+          </div>
+        }
+
+        <h3 class="text-xl font-bold text-slate-900 mb-2">Send a Message</h3>
+
+        <div class="form-control w-full mb-3">
+          <label class="label">
+            <span class="label-text font-medium">Your Name</span>
+          </label>
+          <input type="text" [(ngModel)]="formData.name" placeholder="Mohamed Ahmed"
+            class="input input-bordered w-full" />
+        </div>
+
+        <div class="form-control w-full mb-3">
+          <label class="label">
+            <span class="label-text font-medium">Email Address</span>
+          </label>
+          <input type="email" [(ngModel)]="formData.email" placeholder="you&#64;example.com"
+            class="input input-bordered w-full" />
+        </div>
+
+        <div class="form-control w-full mb-3">
+          <label class="label">
+            <span class="label-text font-medium">Subject</span>
+          </label>
+          <input type="text" [(ngModel)]="formData.subject" placeholder="Course enquiry..."
+            class="input input-bordered w-full" />
+        </div>
+
+        <div class="form-control w-full mb-5">
+          <label class="label">
+            <span class="label-text font-medium">Message</span>
+          </label>
+          <textarea [(ngModel)]="formData.message" placeholder="Write your message here..."
+            class="textarea textarea-bordered w-full h-28 resize-none"></textarea>
+        </div>
+
+        <button (click)="onSubmit()" class="btn bg-sky-700 hover:bg-sky-800 text-white border-none w-full">
+          Send Message 📨
+        </button>
+
+      </div>
+    </div>
+  </div>
+
+</section>

@@ -1,0 +1,10 @@
+/* Global styles */
+@import 'tailwindcss';
+@plugin "daisyui" {
+  themes: light --default;
+}
+
+/* Active navbar link highlight */
+.active {
+  @apply bg-primary/10 text-primary font-semibold;
+}

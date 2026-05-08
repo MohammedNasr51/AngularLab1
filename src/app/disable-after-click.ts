@@ -1,0 +1,29 @@
+import { Directive, ElementRef, HostListener, Renderer2 } from '@angular/core';
+
+@Directive({
+  selector: '[appDisableAfterClick]',
+})
+export class DisableAfterClick {
+  private originalText: string = '';
+
+  constructor(
+    private el: ElementRef,
+    private renderer: Renderer2,
+  ) {}
+
+  @HostListener('click') onClick() {
+    if (!this.originalText) {
+      this.originalText = this.el.nativeElement.innerText;
+    }
+    this.renderer.setProperty(this.el.nativeElement, 'disabled', true);
+    this.renderer.setProperty(this.el.nativeElement, 'innerText', 'Processing...');
+    setTimeout(() => {
+      if(this.el.nativeElement.getAttribute('data-course-seats') == 0) {
+        this.renderer.setProperty(this.el.nativeElement, 'innerText', 'Sold Out');
+      }else{
+        this.renderer.setProperty(this.el.nativeElement, 'disabled', false);
+        this.renderer.setProperty(this.el.nativeElement, 'innerText', this.originalText);
+      }
+    }, 3000);
+  }
+}
