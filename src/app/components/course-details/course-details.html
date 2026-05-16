@@ -1,105 +1,136 @@
-<section class="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-rose-50">
-<div class="w-[90%] max-w-4xl mx-auto py-10">
+<section class="min-h-screen bg-linear-to-br from-emerald-50 via-white to-rose-50">
+  <div class="w-[90%] max-w-4xl mx-auto py-10">
+    <!-- Back Button -->
+    <a
+      routerLink="/courses"
+      class="btn btn-ghost text-emerald-700 hover:bg-emerald-100 btn-sm gap-2 mb-6"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-4 w-4"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+      </svg>
+      Back to Courses
+    </a>
 
-  <!-- Back Button -->
-  <a routerLink="/courses" class="btn btn-ghost text-emerald-700 hover:bg-emerald-100 btn-sm gap-2 mb-6">
-    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-    </svg>
-    Back to Courses
-  </a>
+    @if (course) {
+      <div class="grid md:grid-cols-2 gap-8 items-start">
+        <!-- Course Image -->
+        <div class="rounded-2xl overflow-hidden shadow-xl relative ring-1 ring-emerald-100">
+          @if (course.seats === 0) {
+            <div
+              class="absolute inset-0 bg-red-500/50 backdrop-blur-sm flex items-center justify-center z-10"
+            >
+              <span class="text-white text-2xl font-extrabold">Course Complete</span>
+            </div>
+          }
+          <img [src]="course.image" [alt]="course.title" class="w-full h-64 object-cover" />
+        </div>
 
-  @if (course) {
-
-    <div class="grid md:grid-cols-2 gap-8 items-start">
-
-      <!-- Course Image -->
-      <div class="rounded-2xl overflow-hidden shadow-xl relative ring-1 ring-emerald-100">
-        @if (course.seats === 0) {
-          <div class="absolute inset-0 bg-red-500/50 backdrop-blur-sm flex items-center justify-center z-10">
-            <span class="text-white text-2xl font-extrabold">Course Complete</span>
+        <!-- Course Info -->
+        <div class="space-y-5">
+          <!-- Title + Badge -->
+          <div>
+            <div class="flex flex-wrap gap-2 mb-2">
+              @if (course.seats === 0) {
+                <span class="badge badge-error text-white font-bold">Sold Out</span>
+              } @else if (course.seats <= 2) {
+                <span class="badge badge-warning text-white font-bold">Almost Full</span>
+              } @else {
+                <span class="badge badge-success text-white font-bold">Available</span>
+              }
+            </div>
+            <h1 class="text-3xl font-extrabold text-slate-900">{{ course.title }}</h1>
+            <p class="text-slate-600 mt-1 text-sm">
+              Taught by <span class="font-semibold text-emerald-700">{{ course.instructor }}</span>
+            </p>
           </div>
-        }
-        <img [src]="course.image" [alt]="course.title" class="w-full h-64 object-cover" />
+
+          <div class="divider my-1"></div>
+
+          <!-- Details Grid -->
+          <div class="grid grid-cols-2 gap-4">
+            <div class="stat bg-white rounded-xl p-4 shadow-sm ring-1 ring-emerald-100">
+              <div class="stat-title text-xs text-slate-500">Price</div>
+              <div class="stat-value text-lg text-emerald-700">
+                {{ course.price | discount: discountPercent | currency: 'EGP' }}
+              </div>
+              <div class="stat-desc text-xs">
+                <span class="line-through text-slate-400">{{
+                  course.price | currency: 'EGP'
+                }}</span>
+                <span class="ms-2 text-rose-600 font-semibold">{{ discountPercent }}% off</span>
+              </div>
+            </div>
+            <div class="stat bg-white rounded-xl p-4 shadow-sm ring-1 ring-rose-100">
+              <div class="stat-title text-xs text-slate-500">Seats Left</div>
+              <div
+                class="stat-value text-lg"
+                [class.text-error]="course.seats === 0"
+                [class.text-warning]="course.seats > 0 && course.seats <= 2"
+                [class.text-success]="course.seats > 2"
+              >
+                {{ course.seats === 0 ? 'Full' : course.seats }}
+              </div>
+            </div>
+          </div>
+
+          <!-- Description Placeholder -->
+          <div class="bg-white rounded-xl p-4 space-y-2 shadow-sm ring-1 ring-amber-100">
+            <h3 class="font-bold text-slate-900">About this Course</h3>
+            <p class="text-sm text-slate-600 leading-relaxed">
+              <!-- TODO: add course.description to the ICourse model and service -->
+              This is a professional course taught by <strong>{{ course.instructor }}</strong
+              >. It is designed to help you gain practical skills in
+              <strong>{{ course.title }}</strong
+              >. Enroll now to secure your spot before seats run out.
+            </p>
+          </div>
+          <p class="font-bold"
+            [ngClass]="{
+              'text-amber-500': orderStatus() === 'pending',
+              'text-blue-500': orderStatus() === 'processing',
+              'text-green-500': orderStatus() === 'shipped',
+              'text-red-500': orderStatus() === 'delivered' || orderStatus() === 'error'
+            }"
+          >
+            Order Status: {{ orderStatus() }}
+          </p>
+          <!-- Action Button -->
+          <button
+            class="btn bg-emerald-700 hover:bg-emerald-800 text-white border-none w-full btn-lg"
+            [disabled]="course.seats === 0 || isEnrolled"
+            [class.btn-disabled]="course.seats === 0 || isEnrolled"
+            (click)="buy()"
+          >
+            {{
+              course.seats === 0
+                ? 'No Seats Available'
+                : isEnrolled
+                  ? 'You Are Enrolled'
+                  : 'Register for this Course'
+            }}
+          </button>
+        </div>
       </div>
-
-      <!-- Course Info -->
-      <div class="space-y-5">
-
-        <!-- Title + Badge -->
-        <div>
-          <div class="flex flex-wrap gap-2 mb-2">
-            @if (course.seats === 0) {
-              <span class="badge badge-error text-white font-bold">Sold Out</span>
-            } @else if (course.seats <= 2) {
-              <span class="badge badge-warning text-white font-bold">Almost Full</span>
-            } @else {
-              <span class="badge badge-success text-white font-bold">Available</span>
-            }
-          </div>
-          <h1 class="text-3xl font-extrabold text-slate-900">{{ course.title }}</h1>
-          <p class="text-slate-600 mt-1 text-sm">
-            Taught by <span class="font-semibold text-emerald-700">{{ course.instructor }}</span>
-          </p>
-        </div>
-
-        <div class="divider my-1"></div>
-
-        <!-- Details Grid -->
-        <div class="grid grid-cols-2 gap-4">
-          <div class="stat bg-white rounded-xl p-4 shadow-sm ring-1 ring-emerald-100">
-            <div class="stat-title text-xs text-slate-500">Price</div>
-            <div class="stat-value text-lg text-emerald-700">
-              {{ course.price | discount: discountPercent | currency: 'EGP' }}
-            </div>
-            <div class="stat-desc text-xs">
-              <span class="line-through text-slate-400">{{ course.price | currency: 'EGP' }}</span>
-              <span class="ms-2 text-rose-600 font-semibold">{{ discountPercent }}% off</span>
-            </div>
-          </div>
-          <div class="stat bg-white rounded-xl p-4 shadow-sm ring-1 ring-rose-100">
-            <div class="stat-title text-xs text-slate-500">Seats Left</div>
-            <div class="stat-value text-lg" [class.text-error]="course.seats === 0" [class.text-warning]="course.seats > 0 && course.seats <= 2" [class.text-success]="course.seats > 2">
-              {{ course.seats === 0 ? 'Full' : course.seats }}
-            </div>
-          </div>
-        </div>
-
-        <!-- Description Placeholder -->
-        <div class="bg-white rounded-xl p-4 space-y-2 shadow-sm ring-1 ring-amber-100">
-          <h3 class="font-bold text-slate-900">About this Course</h3>
-          <p class="text-sm text-slate-600 leading-relaxed">
-            <!-- TODO: add course.description to the ICourse model and service -->
-            This is a professional course taught by <strong>{{ course.instructor }}</strong>.
-            It is designed to help you gain practical skills in <strong>{{ course.title }}</strong>.
-            Enroll now to secure your spot before seats run out.
-          </p>
-        </div>
-
-        <!-- Action Button -->
-        <button
-          class="btn bg-emerald-700 hover:bg-emerald-800 text-white border-none w-full btn-lg"
-          [disabled]="course.seats === 0 || isEnrolled"
-          [class.btn-disabled]="course.seats === 0 || isEnrolled"
-          (click)="buy()"
+    } @else {
+      <!-- Not Found State -->
+      <div class="text-center py-24 space-y-4">
+        <div class="text-6xl">😕</div>
+        <h2 class="text-2xl font-bold text-slate-900">Course Not Found</h2>
+        <p class="text-slate-600">
+          The course you're looking for doesn't exist or has been removed.
+        </p>
+        <a
+          routerLink="/courses"
+          class="btn bg-emerald-700 hover:bg-emerald-800 text-white border-none mt-2"
+          >Browse All Courses</a
         >
-          {{ course.seats === 0 ? 'No Seats Available' : isEnrolled ? 'You Are Enrolled' : 'Register for this Course' }}
-        </button>
-
       </div>
-    </div>
-
-  } @else {
-
-    <!-- Not Found State -->
-    <div class="text-center py-24 space-y-4">
-      <div class="text-6xl">😕</div>
-      <h2 class="text-2xl font-bold text-slate-900">Course Not Found</h2>
-      <p class="text-slate-600">The course you're looking for doesn't exist or has been removed.</p>
-      <a routerLink="/courses" class="btn bg-emerald-700 hover:bg-emerald-800 text-white border-none mt-2">Browse All Courses</a>
-    </div>
-
-  }
-
-</div>
+    }
+  </div>
 </section>

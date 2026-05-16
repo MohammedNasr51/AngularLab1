@@ -1,4 +1,4 @@
-import { Component, effect, inject, input, output } from '@angular/core';
+import { Component, effect, inject, input, output, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ICourse } from '../../models/icourses';
 import { NgClass, CurrencyPipe } from '@angular/common';
@@ -6,6 +6,7 @@ import { RouterLink } from '@angular/router';
 import { DisableAfterClick } from '../../disable-after-click';
 import { DiscountPipe } from '../../pipes/discount-pipe';
 import { CourseService } from '../../services/course-service';
+import { Order } from '../../services/order';
 
 @Component({
   selector: 'app-courses',

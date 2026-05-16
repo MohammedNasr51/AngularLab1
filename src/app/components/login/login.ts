@@ -1,17 +1,17 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
 import { Auth } from '../../services/auth';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-navbar',
-  imports: [RouterLink, RouterLinkActive],
-  templateUrl: './navbar.html',
-  styleUrl: './navbar.css',
+  selector: 'app-login',
+  imports: [],
+  templateUrl: './login.html',
+  styleUrl: './login.css',
 })
-export class Navbar implements OnInit{
+export class Login implements OnInit {
   authService = inject(Auth);
   isLoggedIn: boolean = false;
-
+  router = inject(Router);
   ngOnInit(): void {
     this.authService.isLoggedIn().subscribe({
       next: (val) => {
@@ -19,7 +19,8 @@ export class Navbar implements OnInit{
       },
     });
   }
-  logout() {
-    this.authService.logout();
+  login() {
+    this.authService.login('admin', 'admin');
+    this.router.navigateByUrl('/home');
   }
 }

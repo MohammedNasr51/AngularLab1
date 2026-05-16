@@ -1,0 +1,63 @@
+<div class="min-h-screen flex items-center justify-center bg-base-200 px-4">
+  <div class="card w-full max-w-md bg-base-100 shadow-2xl">
+    
+    <!-- Header -->
+    <div class="card-body">
+      <div class="text-center mb-6">
+        <h1 class="text-3xl font-bold">Welcome Back</h1>
+        <p class="text-base-content/70 mt-2">
+          Login to your account
+        </p>
+      </div>
+
+      <!-- Login Form -->
+      <form class="space-y-5">
+
+        <!-- Email -->
+        <div class="form-control">
+          <label class="label">
+            <span class="label-text">Email</span>
+          </label>
+
+          <input
+            type="email"
+            placeholder="Enter your email"
+            class="input input-bordered w-full"
+          />
+        </div>
+
+        <!-- Password -->
+        <div class="form-control">
+          <label class="label">
+            <span class="label-text">Password</span>
+          </label>
+
+          <input
+            type="password"
+            placeholder="Enter your password"
+            class="input input-bordered w-full"
+          />
+
+          <label class="label">
+            <a href="#" class="label-text-alt link link-hover">
+              Forgot password?
+            </a>
+          </label>
+        </div>
+
+        <!-- Submit -->
+        <button type="button" class="btn btn-primary w-full" (click)="login()">
+          Login
+        </button>
+
+        <!-- Register -->
+        <p class="text-center text-sm mt-4">
+          Don’t have an account?
+          <a href="#" class="link link-primary font-medium">
+            Sign up
+          </a>
+        </p>
+      </form>
+    </div>
+  </div>
+</div>
